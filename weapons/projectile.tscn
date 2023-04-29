@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwef508kmhwub"]
+
+[ext_resource type="Script" path="res://weapons/projectile.gd" id="1_clmaf"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_wkhnb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q0kgr"]
+albedo_color = Color(1, 0.772549, 0.376471, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_twy5p"]
+
+[node name="Projectile" type="Area3D"]
+script = ExtResource("1_clmaf")
+speed = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, -1.31134e-08, 0.3, 0, -0.3, -1.31134e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_wkhnb")
+surface_material_override/0 = SubResource("StandardMaterial3D_q0kgr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_twy5p")

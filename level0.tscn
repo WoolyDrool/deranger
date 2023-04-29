@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://cw1b06km0nw7v"]
+
+[ext_resource type="PackedScene" uid="uid://ceu2024xus7b3" path="res://player/player.tscn" id="1_nqgie"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bvyy4"]
+size = Vector3(16, 1, 16)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yoqly"]
+
+[sub_resource type="Sky" id="Sky_6doqk"]
+sky_material = SubResource("ProceduralSkyMaterial_yoqly")
+
+[sub_resource type="Environment" id="Environment_8eqhr"]
+background_mode = 2
+sky = SubResource("Sky_6doqk")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_nqgie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -16)
+size = Vector3(16, 1, 16)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2, -16)
+size = Vector3(16, 1, 16)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3, 0)
+size = Vector3(16, 7, 16)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CSGCombiner3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_bvyy4")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/StaticBody3D"]
+size = Vector3(16, 1, 16)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8eqhr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, 0.183013, 0.683013, -0.707107, 0.183013, 0.683013, 0, -0.965926, 0.258819, 0, 0, 0)
+shadow_enabled = true

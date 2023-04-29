@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnhk66jlsgw0r"]
+
+[ext_resource type="PackedScene" uid="uid://0yggkfs27gej" path="res://weapons/models/rolver.blend" id="1_w4xlh"]
+
+[node name="rolver" instance=ExtResource("1_w4xlh")]
+
+[node name="Plane" parent="." index="0"]
+layers = 524288
+
+[node name="Cylinder" parent="." index="1"]
+layers = 524288
+
+[node name="Cylinder001" parent="." index="2"]
+layers = 524288
+
+[node name="Plane001" parent="." index="3"]
+layers = 524288

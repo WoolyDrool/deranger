@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceu2024xus7b3"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_5xlnu"]
+[ext_resource type="PackedScene" uid="uid://geru5nolutkg" path="res://weapons/weapon_revolver.tscn" id="2_m76l2"]
+[ext_resource type="PackedScene" uid="uid://372rol7wovkh" path="res://ui/ui_player.tscn" id="3_gstxc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xlfe8"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_apsci"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_5xlnu")
+
+[node name="Body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_xlfe8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+mesh = SubResource("CapsuleMesh_apsci")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+cull_mask = 524287
+
+[node name="Weapon" parent="Camera3D" instance=ExtResource("2_m76l2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.7, -1, -1.8)
+
+[node name="WeaponCamera" type="Camera3D" parent="Camera3D"]
+cull_mask = 524288
+
+[node name="Class" type="Node" parent="."]
+
+[node name="Control" parent="." instance=ExtResource("3_gstxc")]
